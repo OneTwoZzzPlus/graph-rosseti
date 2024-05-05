@@ -34,6 +34,8 @@ class App:
         self.root.title('Рисовалка графов (РОССЕТИ) С OneTwoZzz[Plus]')
         self.button_save = tk.Button(root, text="Save", command=self.save_file)
         self.button_save.pack()
+        self.button_update = tk.Button(root, text="Update", command=self.update)
+        self.button_update.pack()
         self.text = tk.Label(root, text="nothing", font=("Arial", 16))
         self.text.pack()
         self.canvas = tk.Canvas(root, width=Point(0, 0, 0).mx, height=Point(0, 0, 0).my)
@@ -52,6 +54,11 @@ class App:
         self.canvas.bind("<Button-1>", self.on_click)
         self.canvas.bind("<Button-3>", self.on_right_click)
         self.root.mainloop()
+
+    def update(self):
+        pass
+
+
 
     def save_file(self):
         filename = save_file()
@@ -76,7 +83,7 @@ class App:
                 if self.start_point is None:
                     self.start_point = point
                     self.text.config(text='start point change')
-                else:
+                elif self.start_point != point:
                     self.end_point = point
                     self.text.config(text='end point change')
                     self.lines.append(Line(self.start_point, self.end_point))
